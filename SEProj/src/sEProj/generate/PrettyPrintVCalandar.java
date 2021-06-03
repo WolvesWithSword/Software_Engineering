@@ -40,7 +40,7 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		
 		if(event.getDtend()!= null) {
 			printer.print("DTEND;"); 
-			doSwitch(event.getDtstart());
+			doSwitch(event.getDtend());
 		}
 		
 		if(event.getDtstamp()!= null) {
@@ -98,10 +98,20 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	@Override
 	public Boolean caseDate(Date date) {
 		printer.print("VALUE=DATE:");
+		
 		String dateToString = ""; //TODO mettre une methode qui tranforme en toString
 		String year = Integer.toString(date.getYear());
 		String month = Integer.toString(date.getMonth());
 		String day = Integer.toString(date.getDay());
+		
+		int hourInt = date.getHour();
+		if(hourInt > 2) {//TODO RECULER JOUR ECT... SI > 2
+			hourInt -= 2;//PARIS AJOUTE 2H
+		}	
+		String hour = Integer.toString(hourInt);
+		
+		String min = Integer.toString(date.getMinute());
+		
 		while(year.length()<4) {
 			year = "0"+year;
 		}
@@ -111,7 +121,23 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		while(day.length()<2) {
 			day = "0"+day;
 		}
+		
 		dateToString = year+month+day;
+		
+		if(!hour.equals("0") || !min.equals("0")) {//Si heure ou min renseignés
+			dateToString+="T";
+			
+			while(hour.length()<2) {
+				hour = "0"+hour;
+			}
+			
+			while(min.length()<2) {
+				min = "0"+min;
+			}
+			
+			dateToString += hour+min+"00Z";
+		}
+		
 		printer.print(dateToString);
 		printer.println();
 		return true;
