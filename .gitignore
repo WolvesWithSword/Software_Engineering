@@ -5,9 +5,6 @@ SEProj.editor/
 SEProj/bin/
 SEProj.ui/bin/
 
-seproj.cal.ide/
-seproj.cal.ui/
-seproj.cal.ui.tests/
 seproj.cal/.launch/
 
 .settings/
