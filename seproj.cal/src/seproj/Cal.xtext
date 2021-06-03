@@ -8,11 +8,13 @@ VCalendar returns VCalendar:
 	{VCalendar}
 	'CALENDRIER'
 	'{'
-		('calscale' calscale=EString)?
-		('method' method=EString)?
-		('prodid' prodid=EString)?
-		('version' version=EString)?
-		( events+=VEvent ( "," events+=VEvent)* )?
+		(
+			('calscale' calscale=EString)? &
+			('method' method=EString)? &
+//			('prodid' prodid=EString)? & //inutile car defini par notre implementation
+//			('version' version=EString)? &
+			( events+=VEvent ( "," events+=VEvent)* )?
+		)
 	'}';
 
 
@@ -25,16 +27,18 @@ VEvent returns VEvent:
 	{VEvent} 
 	'EVENEMENT' ':' summary=EString
 	'{'
-		('UID' UID=EString)?
-		('transp' transp=EString)?
-		('LIEU' ':' location=EString)?
-		('DESCRITPION' ':' description=EString)?
-		('dtstamp' dtstamp=Date)?
-		('DEBUT' dtstart=Date)?
-		('FIN' dtend=Date)?
-		('CREER' 'LE' created=Date)?
-		('MODIFIER' 'LE' last_modified=Date)?
-		('RECURRENCE' ':' rrule=RRule)?
+		(
+			('UID' UID=EString)? &
+			('transp' transp=EString)? &
+			('LIEU' ':' location=EString)? &
+			('DESCRITPION' ':' description=EString)? &
+			('dtstamp' dtstamp=Date)? &
+			('DEBUT' dtstart=Date)? &
+			('FIN' dtend=Date)? &
+			('CREER' 'LE' created=Date)? &
+			('MODIFIER' 'LE' last_modified=Date)? &
+			('RECURRENCE' ':' rrule=RRule)?
+		)
 	'}';
 
 Date returns Date:

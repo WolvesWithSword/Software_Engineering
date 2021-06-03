@@ -35,11 +35,13 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		
 		if(event.getDtstart()!= null) {
 			printer.print("DTSTART;"); 
+			printer.print("VALUE=DATE:");
 			doSwitch(event.getDtstart());
 		}
 		
 		if(event.getDtend()!= null) {
-			printer.print("DTEND;"); 
+			printer.print("DTEND;");
+			printer.print("VALUE=DATE:");
 			doSwitch(event.getDtend());
 		}
 		
@@ -97,8 +99,6 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	
 	@Override
 	public Boolean caseDate(Date date) {
-		printer.print("VALUE=DATE:");
-		
 		String dateToString = ""; //TODO mettre une methode qui tranforme en toString
 		String year = Integer.toString(date.getYear());
 		String month = Integer.toString(date.getMonth());

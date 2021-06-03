@@ -4,8 +4,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="VCalendar">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="calscale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prodid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prodid" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        defaultValueLiteral="&quot;Software-Eng.projet&quot;" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        defaultValueLiteral="2.0" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
         eType="#//VEvent" containment="true"/>
   </eClassifiers>
