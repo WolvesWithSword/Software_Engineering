@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/SEProj/src-gen" creationIcons="false" editDirectory="/SEProj.edit/src-gen"
+    editorDirectory="/SEProj.editor/src-gen" modelPluginID="SEProj" modelName="SEProj"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>sEProj.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="SEProj" disposableProviderFactory="true" ecorePackage="sEProj.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sEProj.ecore#//FreqEnum">
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//FreqEnum/WEEKLY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//FreqEnum/MONTHLY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//FreqEnum/DAILY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//FreqEnum/YEARLY"/>
+    </genEnums>
+    <genClasses ecoreClass="sEProj.ecore#//VCalendar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/calscale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/method"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/prodid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/version"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VCalendar/events"/>
+    </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//VEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/UID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/summary"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/dtstamp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/dtstart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/dtend"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/transp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/created"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/last_modified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/rrule"/>
+    </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//Date">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/hour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/minute"/>
+    </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//RRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/freq"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/count"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/interval"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

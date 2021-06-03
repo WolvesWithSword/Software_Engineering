@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: SEProj.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: SEProj.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: SEProj;bundle-version="0.1.0",
+ org.eclipse.ui;bundle-version="3.117.0"

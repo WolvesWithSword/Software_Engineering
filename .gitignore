@@ -1,0 +1,13 @@
+
+.metadata/
+SEProj.edit/
+SEProj.editor/
+SEProj/src-gen/
+SEProj/bin/
+SEProj.ui/bin/
+
+SEProj.ui/.settings/
+
+SEProj/.classpath
+
+SEProj.ui/.classpath
