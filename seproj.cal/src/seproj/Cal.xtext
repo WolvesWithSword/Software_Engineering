@@ -13,12 +13,17 @@ VCalendar returns VCalendar:
 			('METHODE' ':' method=EString)? &
 //			('prodid' prodid=EString)? & //inutile car defini par notre implementation
 //			('version' version=EString)? &
-			( events+=VEvent ( "," events+=VEvent)* )?
+			( component+=Component ( "," component+=Component)* )?
 		)
 	'}';
 
+Component returns Component:
+	TemporalComponent
+;
 
-
+TemporalComponent returns TemporalComponent:
+	VEvent 
+;
 
 EString returns ecore::EString:
 	STRING | ID;

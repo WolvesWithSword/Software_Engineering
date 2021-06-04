@@ -24,6 +24,7 @@
       <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/INPROCESS"/>
       <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/DRAFT"/>
       <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/FINAL"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/UNDEFINED"/>
     </genEnums>
     <genClasses ecoreClass="sEProj.ecore#//VCalendar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/calscale"/>

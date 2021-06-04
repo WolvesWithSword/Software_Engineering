@@ -16,8 +16,8 @@ class CalFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(VCalendar vCalendar, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (vEvent : vCalendar.events) {
-			vEvent.format
+		for (component : vCalendar.component) {
+			component.format
 		}
 	}
 

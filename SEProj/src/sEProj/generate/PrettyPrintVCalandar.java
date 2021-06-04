@@ -2,8 +2,10 @@ package sEProj.generate;
 
 import java.io.PrintStream;
 
+import sEProj.Component;
 import sEProj.Date;
 import sEProj.RRule;
+import sEProj.TemporalComponent;
 import sEProj.VCalendar;
 import sEProj.VEvent;
 import sEProj.util.SEProjSwitch;
@@ -22,7 +24,7 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		printer.println("VERSION:"+cal.getVersion());
 		printer.println("CALSCALE:"+cal.getCalscale());
 		printer.println("METHOD:"+cal.getMethod());
-		for(VEvent event : cal.getEvents()) {
+		for(Component event : cal.getComponent()) {
 			doSwitch(event);
 		}
 		printer.println("END:VCALENDAR");
@@ -30,18 +32,36 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	}
 	
 	@Override
+	public Boolean caseComponent(Component component) {
+		if(component instanceof TemporalComponent) {
+			return caseTemporalComponent((TemporalComponent) component);
+		}
+		return false;
+	}
+	
+	@Override
+	public Boolean caseTemporalComponent(TemporalComponent component) {
+		if(component instanceof VEvent) {
+			return caseVEvent((VEvent) component);
+		}
+		return false;
+	}
+	
+	@Override
 	public Boolean caseVEvent(VEvent event) {
 		printer.println("BEGIN:VEVENT");
 		
 		if(event.getDtstart()!= null) {
-			printer.print("DTSTART;"); 
-			printer.print("VALUE=DATE:");
+//			printer.print("DTSTART;"); 
+//			printer.print("VALUE=DATE:");
+			printer.print("DTSTART:"); 
 			doSwitch(event.getDtstart());
 		}
 		
 		if(event.getDtend()!= null) {
-			printer.print("DTEND;");
-			printer.print("VALUE=DATE:");
+//			printer.print("DTEND;");
+//			printer.print("VALUE=DATE:");
+			printer.print("DTEND:");
 			doSwitch(event.getDtend());
 		}
 		
@@ -65,12 +85,20 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		
 		//peut etre generer le UID avant
 		printer.println("UID:"+event.getUID()); 
-		printer.println("TRANSP:"+event.getTransp());
+		if(event.getTransp()!= null && !event.getTransp().isEmpty()) {
+			printer.println("TRANSP:"+event.getTransp());
+		}
+		if(event.getSummary()!= null && !event.getSummary().isEmpty()) {
 		printer.println("SUMMARY:"+event.getSummary());
-		printer.println("DESCRIPTION:"+event.getDescription());
+		}
+		if(event.getDescription()!= null && !event.getDescription().isEmpty()) {
+			printer.println("DESCRIPTION:"+event.getDescription());
+		}
 		
 		//WARNING ne pas mettre en stirng???
-		printer.println("LOCATION;"+event.getLocation());
+		if(event.getLocation()!= null && !event.getLocation().isEmpty()) {
+			printer.println("LOCATION:"+event.getLocation());
+		}
 		
 		if(event.getRrule()!=null) {
 			doSwitch(event.getRrule());

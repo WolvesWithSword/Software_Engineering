@@ -4,12 +4,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="VCalendar">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="calscale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prodid" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
-        defaultValueLiteral="&quot;Software-Eng.projet&quot;" unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
-        defaultValueLiteral="2.0" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prodid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Software-Eng.projet" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="2.0" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" upperBound="-1"
         eType="#//Component" containment="true"/>
   </eClassifiers>
@@ -54,7 +52,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rrule" eType="#//RRule"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//StatusEnum"
-        defaultValueLiteral=""/>
+        defaultValueLiteral="UNDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VTODO" eSuperTypes="#//TemporalComponent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="due" eType="#//Date" containment="true"/>
@@ -70,6 +68,7 @@
     <eLiterals name="INPROCESS" value="5" literal="IN-PROCESS"/>
     <eLiterals name="DRAFT" value="6"/>
     <eLiterals name="FINAL" value="7"/>
+    <eLiterals name="UNDEFINED" value="8" literal="UNDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VJournal" eSuperTypes="#//TemporalComponent"/>
 </ecore:EPackage>
