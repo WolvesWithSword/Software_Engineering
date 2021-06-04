@@ -31,5 +31,5 @@ class CalFormatter extends AbstractFormatter2 {
 		vEvent.rrule.format
 	}
 	
-	// TODO: implement for 
+	// TODO: implement for VTODO, VJournal
 }

@@ -22,7 +22,7 @@ Component returns Component:
 ;
 
 TemporalComponent returns TemporalComponent:
-	VEvent 
+	VEvent | VTODO | VJournal
 ;
 
 EString returns ecore::EString:
@@ -42,9 +42,57 @@ VEvent returns VEvent:
 			('FIN' ':' dtend=Date)? &
 			('CREER' 'LE' ':' created=Date)? &
 			('MODIFIER' 'LE' ':' last_modified=Date)? &
-			('RECURRENCE' ':' rrule=RRule)?
+			('RECURRENCE' ':' rrule=RRule)? &
+			('STATUS' ':' status=StatusVEvent)?
 		)
-	'}';
+	'}'
+;
+VTODO returns VTODO:
+	{VTODO} 
+	'TODO' ':' summary=EString
+	'{'
+		(
+			('UID' ':' UID=EString)? &//GEN AUTO
+			('LIEU' ':' location=EString)? &
+			('DESCRITPION' ':' description=EString)? &
+			('STAMP' ':' dtstamp=Date)? & // ? AUTO ? 
+			('DEBUT' ':' dtstart=Date)? &
+			('CREER' 'LE' ':' created=Date)? &
+			('MODIFIER' 'LE' ':' last_modified=Date)? &
+			('RECURRENCE' ':' rrule=RRule)? &
+			('PRIORITE' ':' priority=EInt)? &
+			('STATUS' ':' status=StatusVTODO)? &
+			('POUR' 'LE' ':' due=Date)?
+		)
+	'}'
+;
+VJournal returns VJournal:
+	{VJournal} 
+	'Journal' ':' summary=EString
+	'{'
+		(
+			('UID' ':' UID=EString)? &//GEN AUTO
+			('DESCRITPION' ':' description=EString)? &
+			('STAMP' ':' dtstamp=Date)? & // ? AUTO ? 
+			('DEBUT' ':' dtstart=Date)? &
+			('CREER' 'LE' ':' created=Date)? &
+			('MODIFIER' 'LE' ':' last_modified=Date)? &
+			('RECURRENCE' ':' rrule=RRule)? &
+			('STATUS' ':' status=StatusVJournal)?
+		)
+	'}'
+;
+
+enum StatusVJournal returns StatusEnum:
+	DRAFT = "BROUILLON" | FINAL = "FINAL" | CANCELLED = "ANNULE"
+;
+enum StatusVEvent returns StatusEnum:
+	TENTATIVE = "TENTATIVE" | CONFIRMED = "CONFIRME" | CANCELLED = "ANNULE"
+;
+
+enum StatusVTODO returns StatusEnum:
+	NEEDSACTION = "ACTION REQUISE" | COMPLETED = "COMPLETE" | INPROCESS = "EN COURS" | CANCELLED = "ANNULE"
+;
 
 Date returns Date:
 	day=EInt'/'month=EInt'/'year=EInt('à' hour=EInt'h'(minute=EInt)?)?
@@ -60,3 +108,4 @@ EInt returns ecore::EInt:
 
 enum FreqEnum returns FreqEnum:
 				WEEKLY = 'SEMAINES' | MONTHLY = 'MOIS' | DAILY = 'JOURS' | YEARLY = 'ANS';
+				
