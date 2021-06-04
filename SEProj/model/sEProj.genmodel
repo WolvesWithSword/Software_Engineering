@@ -15,25 +15,27 @@
       <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//FreqEnum/DAILY"/>
       <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//FreqEnum/YEARLY"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sEProj.ecore#//StatusEnum">
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/TENTATIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/CONFIRMED"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/CANCELLED"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/NEEDSACTION"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/COMPLETED"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/INPROCESS"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/DRAFT"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/FINAL"/>
+    </genEnums>
     <genClasses ecoreClass="sEProj.ecore#//VCalendar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/calscale"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/method"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/prodid"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/version"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VCalendar/events"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VCalendar/component"/>
     </genClasses>
     <genClasses ecoreClass="sEProj.ecore#//VEvent">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/UID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/summary"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/dtstamp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/dtstart"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/dtend"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/transp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/created"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/last_modified"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/location"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VEvent/description"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VEvent/rrule"/>
     </genClasses>
     <genClasses ecoreClass="sEProj.ecore#//Date">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/year"/>
@@ -47,5 +49,24 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/count"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/interval"/>
     </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Component/summary"/>
+    </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//TemporalComponent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//TemporalComponent/dtstamp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//TemporalComponent/dtstart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//TemporalComponent/last_modified"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//TemporalComponent/created"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//TemporalComponent/UID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//TemporalComponent/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//TemporalComponent/rrule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//TemporalComponent/status"/>
+    </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//VTODO">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VTODO/due"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VTODO/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VTODO/priority"/>
+    </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//VJournal"/>
   </genPackages>
 </genmodel:GenModel>

@@ -10,27 +10,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
         defaultValueLiteral="2.0" unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
-        eType="#//VEvent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" upperBound="-1"
+        eType="#//Component" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VEvent">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="UID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="summary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dtstamp" eType="#//Date"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dtstart" eType="#//Date"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VEvent" eSuperTypes="#//TemporalComponent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dtend" eType="#//Date"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="created" eType="#//Date"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="last_modified" eType="#//Date"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rrule" eType="#//RRule"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Date">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="year" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -50,4 +37,39 @@
     <eLiterals name="DAILY" value="2" literal="DAILY"/>
     <eLiterals name="YEARLY" value="3"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="summary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemporalComponent" abstract="true" eSuperTypes="#//Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dtstamp" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dtstart" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="last_modified" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="created" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="UID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rrule" eType="#//RRule"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//StatusEnum"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VTODO" eSuperTypes="#//TemporalComponent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="due" eType="#//Date" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StatusEnum">
+    <eLiterals name="TENTATIVE"/>
+    <eLiterals name="CONFIRMED" value="1"/>
+    <eLiterals name="CANCELLED" value="2"/>
+    <eLiterals name="NEEDSACTION" value="3" literal="NEEDS-ACTION"/>
+    <eLiterals name="COMPLETED" value="4"/>
+    <eLiterals name="INPROCESS" value="5" literal="IN-PROCESS"/>
+    <eLiterals name="DRAFT" value="6"/>
+    <eLiterals name="FINAL" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VJournal" eSuperTypes="#//TemporalComponent"/>
 </ecore:EPackage>

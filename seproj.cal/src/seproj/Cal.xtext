@@ -9,8 +9,8 @@ VCalendar returns VCalendar:
 	'CALENDRIER'
 	'{'
 		(
-			('calscale' calscale=EString)? &
-			('method' method=EString)? &
+			('SCALE' ':' calscale=EString)? &
+			('METHODE' ':' method=EString)? &
 //			('prodid' prodid=EString)? & //inutile car defini par notre implementation
 //			('version' version=EString)? &
 			( events+=VEvent ( "," events+=VEvent)* )?
@@ -28,15 +28,15 @@ VEvent returns VEvent:
 	'EVENEMENT' ':' summary=EString
 	'{'
 		(
-			('UID' UID=EString)? &
-			('transp' transp=EString)? &
+			('UID' ':' UID=EString)? &//GEN AUTO
+			('BLOQUANT' ':' transp=EString)? &//TRUE/FALSE
 			('LIEU' ':' location=EString)? &
 			('DESCRITPION' ':' description=EString)? &
-			('dtstamp' dtstamp=Date)? &
-			('DEBUT' dtstart=Date)? &
-			('FIN' dtend=Date)? &
-			('CREER' 'LE' created=Date)? &
-			('MODIFIER' 'LE' last_modified=Date)? &
+			('STAMP' ':' dtstamp=Date)? & // ? AUTO ? 
+			('DEBUT' ':' dtstart=Date)? &
+			('FIN' ':' dtend=Date)? &
+			('CREER' 'LE' ':' created=Date)? &
+			('MODIFIER' 'LE' ':' last_modified=Date)? &
 			('RECURRENCE' ':' rrule=RRule)?
 		)
 	'}';
