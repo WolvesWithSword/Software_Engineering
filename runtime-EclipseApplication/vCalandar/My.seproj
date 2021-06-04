@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sEProj:VCalendar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sEProj="http://www.example.org/sEProj">
-  <component xsi:type="sEProj:VEvent" summary="aaaaaaaaa" description="une description" location="Nice">
+<sEProj:VCalendar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sEProj="http://www.example.org/sEProj" calscale="GREGORIAN" method="REQUEST">
+  <component xsi:type="sEProj:VEvent" summary="aaaaaaaaa" UID="event" description="une description" location="Nice">
     <dtstart year="2021" month="6" day="4" hour="12" minute="45"/>
+    <rrule freq="DAILY" interval="2"/>
     <dtend year="2021" month="6" day="4" hour="15" minute="30"/>
+  </component>
+  <component xsi:type="sEProj:VTODO" summary="PROJET " UID="proj" description="Rendre le projet">
+    <dtstart year="2021" month="6" day="4"/>
+    <due year="2021" month="6" day="7"/>
+  </component>
+  <component xsi:type="sEProj:VJournal" summary="le futur" UID="journal" description="le futur est incertain">
+    <dtstart year="2022" month="12" day="5"/>
   </component>
 </sEProj:VCalendar>

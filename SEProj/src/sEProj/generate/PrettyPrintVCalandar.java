@@ -8,6 +8,8 @@ import sEProj.RRule;
 import sEProj.TemporalComponent;
 import sEProj.VCalendar;
 import sEProj.VEvent;
+import sEProj.VJournal;
+import sEProj.VTODO;
 import sEProj.util.SEProjSwitch;
 
 public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
@@ -27,7 +29,7 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		for(Component event : cal.getComponent()) {
 			doSwitch(event);
 		}
-		printer.println("END:VCALENDAR");
+		printer.println("END:VCALENDAR\n");
 		return true;
 	}
 	
@@ -44,19 +46,65 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		if(component instanceof VEvent) {
 			return caseVEvent((VEvent) component);
 		}
+		
+		if(component instanceof VTODO) {
+			return caseVTODO((VTODO) component);
+		}
+		
+		if(component instanceof VJournal) {
+			return caseVJournal((VJournal) component);
+		}
+		
 		return false;
+	}
+	
+	public void printTemporalComponent(TemporalComponent component) {
+		
+		//peut etre generer le UID avant
+		printer.println("UID:"+component.getUID()); 
+		
+		if(component.getDtstamp()!= null) {
+			printer.print("DTSTAMP:"); 
+			doSwitch(component.getDtstamp());
+		}
+		
+		if(component.getDtstart()!= null) {
+//			printer.print("DTSTART;"); 
+//			printer.print("VALUE=DATE:");
+			printer.print("DTSTART:"); 
+			doSwitch(component.getDtstart());
+		}
+		
+		if(component.getSummary()!= null && !component.getSummary().isEmpty()) {
+			printer.println("SUMMARY:"+component.getSummary());
+		}
+		
+		if(component.getDescription()!= null && !component.getDescription().isEmpty()) {
+			printer.println("DESCRIPTION:"+component.getDescription());
+		}
+		
+		if(component.getCreated()!= null) {
+			printer.print("CREATED:"); 
+			doSwitch(component.getCreated());
+		}
+		
+		if(component.getLast_modified()!= null) {
+			printer.print("LAST-MODIFIED:"); 
+			doSwitch(component.getLast_modified());
+		}
+		
+		if(component.getRrule()!=null) {
+			doSwitch(component.getRrule());
+		}
+		
 	}
 	
 	@Override
 	public Boolean caseVEvent(VEvent event) {
 		printer.println("BEGIN:VEVENT");
 		
-		if(event.getDtstart()!= null) {
-//			printer.print("DTSTART;"); 
-//			printer.print("VALUE=DATE:");
-			printer.print("DTSTART:"); 
-			doSwitch(event.getDtstart());
-		}
+		//Attribut communs
+		printTemporalComponent(event);
 		
 		if(event.getDtend()!= null) {
 //			printer.print("DTEND;");
@@ -65,43 +113,12 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 			doSwitch(event.getDtend());
 		}
 		
-		if(event.getDtstamp()!= null) {
-			//probleme de representation
-			printer.print("DTSTAMP:"); 
-			doSwitch(event.getDtstamp());
-		}
-		
-		if(event.getCreated()!= null) {
-			//WARNING pb comme dtStamp
-			printer.print("CREATED:"); 
-			doSwitch(event.getCreated());
-		}
-		
-		if(event.getLast_modified()!= null) {
-			//WARNING pb comme dtStamp
-			printer.print("LAST-MODIFIED:"); 
-			doSwitch(event.getLast_modified());
-		}
-		
-		//peut etre generer le UID avant
-		printer.println("UID:"+event.getUID()); 
 		if(event.getTransp()!= null && !event.getTransp().isEmpty()) {
 			printer.println("TRANSP:"+event.getTransp());
 		}
-		if(event.getSummary()!= null && !event.getSummary().isEmpty()) {
-		printer.println("SUMMARY:"+event.getSummary());
-		}
-		if(event.getDescription()!= null && !event.getDescription().isEmpty()) {
-			printer.println("DESCRIPTION:"+event.getDescription());
-		}
 		
-		//WARNING ne pas mettre en stirng???
 		if(event.getLocation()!= null && !event.getLocation().isEmpty()) {
 			printer.println("LOCATION:"+event.getLocation());
-		}
-		
-		if(event.getRrule()!=null) {
-			doSwitch(event.getRrule());
 		}
 		
 		printer.println("END:VEVENT");
@@ -109,18 +126,61 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	}
 	
 	@Override
+	public Boolean caseVTODO(VTODO todo) {
+		printer.println("BEGIN:VTODO");
+		
+		//Attribut communs
+		printTemporalComponent(todo);
+		
+		if(todo.getDue()!= null) {
+//			printer.print("DTEND;");
+//			printer.print("VALUE=DATE:");
+			printer.print("DUE:");
+			doSwitch(todo.getDue());
+		}
+		
+		if(todo.getPriority()!= 0) {//? A voir l'interêt d'une prio de 0
+			printer.println("PRIORITY:"+todo.getPriority());
+		}
+		
+		if(todo.getLocation()!= null && !todo.getLocation().isEmpty()) {
+			printer.println("LOCATION:"+todo.getLocation());
+		}
+		
+		printer.println("END:VTODO");
+		return true;
+	}
+	
+	@Override 
+	public Boolean caseVJournal(VJournal journal) {
+		
+		printer.println("BEGIN:VJOURNAL");
+		
+		printTemporalComponent(journal);
+		
+		printer.println("END:VJOURNAL");
+		return true;
+	}
+	
+	@Override
 	public Boolean caseRRule(RRule rRule) {
 		if(rRule == null) return false;
 		printer.print("RRULE:");
+		
+		StringBuilder sb = new StringBuilder();
+		
 		if(rRule.getFreq()!=null) {
-			printer.print("FREQ="+rRule.getFreq().getLiteral());
+			sb.append("FREQ=").append(rRule.getFreq().getLiteral()).append(";");
 		}
 		if(rRule.getCount()!=0) {
-			printer.print("COUNT="+rRule.getCount());
+			sb.append("COUNT=").append(rRule.getCount()).append(";");
 		}
 		if(rRule.getInterval()!=0) {
-			printer.print("INTERVAL="+rRule.getInterval());
+			sb.append("INTERVAL=").append(rRule.getInterval()).append(";");
 		}
+
+		printer.println(sb.substring(0, sb.length()-2));//remove le dernier ";"
+		
 		//ajout de UTIL???
 		return true;
 	}
