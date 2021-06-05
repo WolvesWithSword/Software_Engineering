@@ -28,20 +28,37 @@
                   style="push">
                <visibleWhen
                      checkEnabled="true">
-                  <with
-                        variable="activeMenuSelection">
-                     <iterate
-                           ifEmpty="false"
-                           operator="and">
-                        <adapt
-                              type="sEProj.VCalendar">
-                        </adapt>
-                     </iterate>
-                  </with>
+                  <iterate
+                        operator="and">
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+                        <test
+                              property="org.eclipse.core.resources.extension"
+                              value="cal">
+                        </test>
+                     </adapt>
+                     
+                  </iterate>
+                </visibleWhen>
+              </command>
+            <command
+                  commandId="SEProj.ui.generateCalendar"
+                  label="Generate Calendar"
+                  style="push">
+               <visibleWhen
+                     checkEnabled="true">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <adapt
+                           type="sEProj.VCalendar">
+                     </adapt>
+                  </iterate>
                </visibleWhen>
             </command>
-         </menu>
-      </menuContribution>
+           </menu>
+        </menuContribution>
+
    </extension>
 
 </plugin>
