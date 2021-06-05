@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" name="SEProj" version="12.0.0.2017041100">
+  <ownedViewpoints name="Calendar">
+    <ownedRepresentations xsi:type="description_1:EditionTableDescription" name="Calendar" titleExpression="Calendar" initialisation="true" domainClass="sEProj::VCalendar">
+      <ownedLineMappings name="VEvent" domainClass="VEvent" semanticCandidatesExpression="aql:self.component" headerLabelExpression="feature:summary"/>
+      <ownedColumnMappings name="Summary" headerLabelExpression="Titre" featureName="summary"/>
+      <ownedColumnMappings name="DTStart" headerLabelExpression="Debut" featureName="dtstart" labelExpression="aql:self.dtstart.year"/>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="SEProj.design.Services"/>
+  </ownedViewpoints>
+</description:Group>

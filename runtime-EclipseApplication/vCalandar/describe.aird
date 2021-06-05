@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:sEProj="http://www.example.org/sEProj" xmlns:table="http://www.eclipse.org/sirius/table/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/table/description/1.1.0 http://www.eclipse.org/sirius/table/1.1.0#//description">
+  <viewpoint:DAnalysis uid="_LyK2MMZBEeuurO6IOkG0YA" selectedViews="_ME2hoMZBEeuurO6IOkG0YA" version="14.3.1.202003261200">
+    <semanticResources>describe.cal</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="_ME2hoMZBEeuurO6IOkG0YA">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ME92YMZBEeuurO6IOkG0YA" name="Calendar" repPath="#_ME4W0MZBEeuurO6IOkG0YA">
+        <description xmi:type="description_1:EditionTableDescription" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']"/>
+        <target xmi:type="sEProj:VCalendar" href="describe.cal#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <table:DTable uid="_ME4W0MZBEeuurO6IOkG0YA">
+    <target xmi:type="sEProj:VCalendar" href="describe.cal#/"/>
+    <lines xmi:type="table:DLine" uid="_ME9PUMZBEeuurO6IOkG0YA" label="FINIR LE PROJET">
+      <target xmi:type="sEProj:VEvent" href="describe.cal#//@component.0"/>
+      <semanticElements xmi:type="sEProj:VEvent" href="describe.cal#//@component.0"/>
+      <originMapping xmi:type="description_1:LineMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedLineMappings[name='VEvent']"/>
+    </lines>
+    <columns xmi:type="table:DFeatureColumn" uid="_ME9PUsZBEeuurO6IOkG0YA" label="Debut" featureName="DTStart">
+      <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='DTStart']"/>
+    </columns>
+    <columns xmi:type="table:DFeatureColumn" uid="_ME9PVMZBEeuurO6IOkG0YA" label="Titre" featureName="Summary">
+      <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='Summary']"/>
+    </columns>
+    <description xmi:type="description_1:EditionTableDescription" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']"/>
+  </table:DTable>
+</xmi:XMI>
