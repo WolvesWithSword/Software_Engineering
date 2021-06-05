@@ -1,15 +1,19 @@
 package sEProj.generate;
 
 import java.io.PrintStream;
+import java.util.stream.Collectors;
 
 import sEProj.Component;
+import sEProj.DAY;
 import sEProj.Date;
 import sEProj.RRule;
+import sEProj.StatusEnum;
 import sEProj.TemporalComponent;
 import sEProj.VCalendar;
 import sEProj.VEvent;
 import sEProj.VJournal;
 import sEProj.VTODO;
+import sEProj.VTimeZone;
 import sEProj.util.SEProjSwitch;
 
 public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
@@ -37,6 +41,9 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	public Boolean caseComponent(Component component) {
 		if(component instanceof TemporalComponent) {
 			return caseTemporalComponent((TemporalComponent) component);
+		}
+		if(component instanceof VTimeZone) {
+			return caseVTimeZone((VTimeZone) component);
 		}
 		return false;
 	}
@@ -93,11 +100,20 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 			doSwitch(component.getLast_modified());
 		}
 		
+		if(component.getStatus()!=StatusEnum.UNDEFINED) {
+			printer.println("STATUS:"+component.getStatus()); 
+		}
+		
 		if(component.getRrule()!=null) {
 			doSwitch(component.getRrule());
 		}
 		
+		if(component.getExdate() != null) {
+			printer.println("EXDATE:"+component.getExdate().stream().map((elt)->elt.toString()).collect(Collectors.joining(",")));
+		}
+		
 	}
+	
 	
 	@Override
 	public Boolean caseVEvent(VEvent event) {
@@ -178,57 +194,48 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		if(rRule.getInterval()!=0) {
 			sb.append("INTERVAL=").append(rRule.getInterval()).append(";");
 		}
+		if(rRule.getEntryDayNumber()!=null) {
+			sb.append("BYDAY=");
+			for(int i = 0; i<rRule.getEntryDayNumber().size();i++) {
+				if(i>0) sb.append(",");
+				int dayNumber = rRule.getEntryDayNumber().get(i).getByDayNumber();
+				DAY day = rRule.getEntryDayNumber().get(i).getByDay();
+				if(dayNumber!=0) {
+					sb.append(dayNumber);
+				}
+				sb.append(day.getLiteral());
+			}
+			sb.append(";");
+		}
 
-		printer.println(sb.substring(0, sb.length()-2));//remove le dernier ";"
+		printer.println(sb.substring(0, sb.length()-1));//remove le dernier ";"
 		
 		//ajout de UTIL???
 		return true;
 	}
 	
 	@Override
+	public Boolean caseVTimeZone(VTimeZone timeZone) {
+		printer.println("BEGIN:VTIMEZONE");
+		if(timeZone.getTZID()!=null && !timeZone.getTZID().isEmpty()) {
+			printer.println("TZID:"+timeZone.getTZID());
+		} else {
+			printer.println("TZID:Europe/Paris");
+		}
+		if(timeZone.getTZURL()!=null && !timeZone.getTZURL().isEmpty()) {
+			printer.println("TZURL:"+timeZone.getTZURL());
+		}
+		printer.println("END:VTIMEZONE");
+		return true;
+	}
+	
+	@Override
 	public Boolean caseDate(Date date) {
-		String dateToString = ""; //TODO mettre une methode qui tranforme en toString
-		String year = Integer.toString(date.getYear());
-		String month = Integer.toString(date.getMonth());
-		String day = Integer.toString(date.getDay());
-		
-		int hourInt = date.getHour();
-		if(hourInt > 2) {//TODO RECULER JOUR ECT... SI > 2
-			hourInt -= 2;//PARIS AJOUTE 2H
-		}	
-		String hour = Integer.toString(hourInt);
-		
-		String min = Integer.toString(date.getMinute());
-		
-		while(year.length()<4) {
-			year = "0"+year;
-		}
-		while(month.length()<2) {
-			month = "0"+month;
-		}
-		while(day.length()<2) {
-			day = "0"+day;
-		}
-		
-		dateToString = year+month+day;
-		
-		if(!hour.equals("0") || !min.equals("0")) {//Si heure ou min renseignés
-			dateToString+="T";
-			
-			while(hour.length()<2) {
-				hour = "0"+hour;
-			}
-			
-			while(min.length()<2) {
-				min = "0"+min;
-			}
-			
-			dateToString += hour+min+"00Z";
-		}
-		
-		printer.print(dateToString);
+		printer.print(date.toString());
 		printer.println();
 		return true;
 	}
+	
+	
 
 }

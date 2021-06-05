@@ -26,6 +26,15 @@
       <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/FINAL"/>
       <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//StatusEnum/UNDEFINED"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sEProj.ecore#//DAY">
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//DAY/MONDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//DAY/TUESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//DAY/WEDNESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//DAY/THURSDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//DAY/FRIDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//DAY/SATURDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="sEProj.ecore#//DAY/SUNDAY"/>
+    </genEnums>
     <genClasses ecoreClass="sEProj.ecore#//VCalendar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/calscale"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VCalendar/method"/>
@@ -44,11 +53,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/day"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/hour"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Date/minute"/>
+      <genOperations ecoreOperation="sEProj.ecore#//Date/toString" body="String dateToString = &quot;&quot;; //TODO mettre une methode qui tranforme en toString&#xD;&#xA;String year = Integer.toString(this.getYear());&#xD;&#xA;String month = Integer.toString(this.getMonth());&#xD;&#xA;String day = Integer.toString(this.getDay());&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;int hourInt = this.getHour();&#xD;&#xA;if(hourInt > 2) {//TODO RECULER JOUR ECT... SI > 2&#xD;&#xA;&#x9;hourInt -= 2;//PARIS AJOUTE 2H&#xD;&#xA;}&#x9;&#xD;&#xA;String hour = Integer.toString(hourInt);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;String min = Integer.toString(this.getMinute());&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;while(year.length()&lt;4) {&#xD;&#xA;&#x9;year = &quot;0&quot;+year;&#xD;&#xA;}&#xD;&#xA;while(month.length()&lt;2) {&#xD;&#xA;&#x9;month = &quot;0&quot;+month;&#xD;&#xA;}&#xD;&#xA;while(day.length()&lt;2) {&#xD;&#xA;&#x9;day = &quot;0&quot;+day;&#xD;&#xA;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;dateToString = year+month+day;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;if(!hour.equals(&quot;0&quot;) || !min.equals(&quot;0&quot;)) {//Si heure ou min renseignés&#xD;&#xA;&#x9;dateToString+=&quot;T&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;while(hour.length()&lt;2) {&#xD;&#xA;&#x9;&#x9;hour = &quot;0&quot;+hour;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;while(min.length()&lt;2) {&#xD;&#xA;&#x9;&#x9;min = &quot;0&quot;+min;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;dateToString += hour+min+&quot;00Z&quot;;&#xD;&#xA;}&#xD;&#xA;return dateToString;"/>
     </genClasses>
     <genClasses ecoreClass="sEProj.ecore#//RRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/freq"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/count"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//RRule/interval"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//RRule/entryDayNumber"/>
     </genClasses>
     <genClasses ecoreClass="sEProj.ecore#//Component">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//Component/summary"/>
@@ -62,6 +73,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//TemporalComponent/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//TemporalComponent/rrule"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//TemporalComponent/status"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//TemporalComponent/exdate"/>
     </genClasses>
     <genClasses ecoreClass="sEProj.ecore#//VTODO">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VTODO/due"/>
@@ -69,5 +81,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VTODO/priority"/>
     </genClasses>
     <genClasses ecoreClass="sEProj.ecore#//VJournal"/>
+    <genClasses ecoreClass="sEProj.ecore#//EntryDAYNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//EntryDAYNumber/byDay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//EntryDAYNumber/byDayNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="sEProj.ecore#//VTimeZone">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VTimeZone/TZID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sEProj.ecore#//VTimeZone/lastMod"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sEProj.ecore#//VTimeZone/TZURL"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

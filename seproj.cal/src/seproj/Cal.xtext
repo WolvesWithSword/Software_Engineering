@@ -18,7 +18,7 @@ VCalendar returns VCalendar:
 	'}';
 
 Component returns Component:
-	TemporalComponent
+	TemporalComponent|VTimeZone
 ;
 
 TemporalComponent returns TemporalComponent:
@@ -42,8 +42,8 @@ VEvent returns VEvent:
 			('FIN' ':' dtend=Date)? &
 			('CREER' 'LE' ':' created=Date)? &
 			('MODIFIER' 'LE' ':' last_modified=Date)? &
-			('RECURRENCE' ':' rrule=RRule)? &
-			('STATUS' ':' status=StatusVEvent)?
+			('RECURRENCE' ':' rrule=RRule & ('SAUF' ('LE' | 'LES') exdate+=Date ( ',' exdate+=Date)* )?)? &
+			('STATUS' ':' status=StatusVEvent)? 
 		)
 	'}'
 ;
@@ -59,13 +59,23 @@ VTODO returns VTODO:
 			('DEBUT' ':' dtstart=Date)? &
 			('CREER' 'LE' ':' created=Date)? &
 			('MODIFIER' 'LE' ':' last_modified=Date)? &
-			('RECURRENCE' ':' rrule=RRule)? &
+			('RECURRENCE' ':' rrule=RRule & ('SAUF' ('LE' | 'LES') exdate+=Date ( ',' exdate+=Date)* )?)? &
 			('PRIORITE' ':' priority=EInt)? &
 			('STATUS' ':' status=StatusVTODO)? &
 			('POUR' 'LE' ':' due=Date)?
 		)
 	'}'
 ;
+
+VTimeZone returns VTimeZone: 
+	{VTimeZone} 
+	'TIMEZONE'
+	'{'
+		('TZID' ':' TZID=EString) //obligatoire si il y a une time zone
+		('TZURL' ':' TZURL=EString)?
+	'}'
+;
+
 VJournal returns VJournal:
 	{VJournal} 
 	'Journal' ':' summary=EString
@@ -77,7 +87,7 @@ VJournal returns VJournal:
 			('DEBUT' ':' dtstart=Date)? &
 			('CREER' 'LE' ':' created=Date)? &
 			('MODIFIER' 'LE' ':' last_modified=Date)? &
-			('RECURRENCE' ':' rrule=RRule)? &
+			('RECURRENCE' ':' rrule=RRule ('SAUF' ('LE' | 'LES') exdate+=Date ( 'ET' exdate+=Date)* )?)? &
 			('STATUS' ':' status=StatusVJournal)?
 		)
 	'}'
@@ -96,16 +106,28 @@ enum StatusVTODO returns StatusEnum:
 
 Date returns Date:
 	day=EInt'/'month=EInt'/'year=EInt('à' hour=EInt'h'(minute=EInt)?)?
-	;
+;
 	
 
 RRule returns RRule:
-	'TOU(TE)S' 'LES' (interval=EInt)? freq=FreqEnum (count=EInt 'FOIS')?
-	;
+	('TOUTES'| 'TOUS') 'LES' (interval=EInt)? 
+	((freq=FreqEnum (count=EInt 'FOIS')?) 
+	| (freq=FreqEnumMonth  (count=EInt 'FOIS')? 'SEULEMENT' entryDayNumber+=EntryDayNumber ('ET' entryDayNumber+=EntryDayNumber)*))
+;
+	
+EntryDayNumber returns EntryDAYNumber:
+	 'LE' (byDayNumber=EInt ('ER'|'EME'))? byDay=EnumDay 
+;
+
+enum EnumDay returns DAY:
+	MONDAY='LUNDI' | TUESDAY='MARDI' | WEDNESDAY='MERCREDI' | THURSDAY='JEUDI' | FRIDAY='VENDREDI' | SATURDAY='SAMEDI' | SUNDAY='DIMANCHE'
+;
 
 EInt returns ecore::EInt:
 	INT;
 
 enum FreqEnum returns FreqEnum:
 				WEEKLY = 'SEMAINES' | MONTHLY = 'MOIS' | DAILY = 'JOURS' | YEARLY = 'ANS';
+enum FreqEnumMonth returns FreqEnum:
+				MONTHLY = 'MOIS';
 				

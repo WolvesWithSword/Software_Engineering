@@ -18,6 +18,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Date">
+    <eOperations name="toString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="year" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="month" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="day" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -28,6 +29,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="freq" eType="#//FreqEnum"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entryDayNumber" upperBound="-1"
+        eType="#//EntryDAYNumber" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FreqEnum">
     <eLiterals name="WEEKLY"/>
@@ -53,6 +56,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//StatusEnum"
         defaultValueLiteral="UNDEFINED"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exdate" upperBound="-1"
+        eType="#//Date" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VTODO" eSuperTypes="#//TemporalComponent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="due" eType="#//Date" containment="true"/>
@@ -71,4 +76,23 @@
     <eLiterals name="UNDEFINED" value="8" literal="UNDEFINED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VJournal" eSuperTypes="#//TemporalComponent"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="DAY">
+    <eLiterals name="MONDAY" literal="MO"/>
+    <eLiterals name="TUESDAY" value="1" literal="TU"/>
+    <eLiterals name="WEDNESDAY" value="1" literal="WE"/>
+    <eLiterals name="THURSDAY" value="1" literal="TH"/>
+    <eLiterals name="FRIDAY" value="1" literal="FR"/>
+    <eLiterals name="SATURDAY" value="1" literal="SA"/>
+    <eLiterals name="SUNDAY" value="1" literal="SU"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntryDAYNumber">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="byDay" eType="#//DAY" defaultValueLiteral="MO"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="byDayNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VTimeZone" eSuperTypes="#//Component">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TZID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lastMod" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TZURL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
