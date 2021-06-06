@@ -109,7 +109,7 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		}
 		
 		if(component.getExdate() != null) {
-			printer.println("EXDATE:"+component.getExdate().stream().map((elt)->elt.toString()).collect(Collectors.joining(",")));
+			printer.println("EXDATE:"+component.getExdate().stream().map((elt)->elt.toStringPP()).collect(Collectors.joining(",")));
 		}
 		
 	}
@@ -194,7 +194,7 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		if(rRule.getInterval()!=0) {
 			sb.append("INTERVAL=").append(rRule.getInterval()).append(";");
 		}
-		if(rRule.getEntryDayNumber()!=null) {
+		if(rRule.getEntryDayNumber()!=null & rRule.getEntryDayNumber().size() != 0) {
 			sb.append("BYDAY=");
 			for(int i = 0; i<rRule.getEntryDayNumber().size();i++) {
 				if(i>0) sb.append(",");
@@ -231,7 +231,7 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	
 	@Override
 	public Boolean caseDate(Date date) {
-		printer.print(date.toString());
+		printer.print(date.toStringPP());
 		printer.println();
 		return true;
 	}

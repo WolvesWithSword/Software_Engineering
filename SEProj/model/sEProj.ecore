@@ -16,8 +16,11 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Evenement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Date">
+    <eOperations name="toStringPP" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="toString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="year" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="month" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -33,10 +36,10 @@
         eType="#//EntryDAYNumber" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FreqEnum">
-    <eLiterals name="WEEKLY"/>
-    <eLiterals name="MONTHLY" value="1"/>
-    <eLiterals name="DAILY" value="2" literal="DAILY"/>
-    <eLiterals name="YEARLY" value="3"/>
+    <eLiterals name="WEEKLY" literal="Hebdomadaire"/>
+    <eLiterals name="MONTHLY" value="1" literal="Mensuel"/>
+    <eLiterals name="DAILY" value="2" literal="Journalier"/>
+    <eLiterals name="YEARLY" value="3" literal="Annuel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="summary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -63,6 +66,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="due" eType="#//Date" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="TODO"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StatusEnum">
     <eLiterals name="TENTATIVE"/>
@@ -75,7 +80,10 @@
     <eLiterals name="FINAL" value="7"/>
     <eLiterals name="UNDEFINED" value="8" literal="UNDEFINED"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VJournal" eSuperTypes="#//TemporalComponent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VJournal" eSuperTypes="#//TemporalComponent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Journal"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DAY">
     <eLiterals name="MONDAY" literal="MO"/>
     <eLiterals name="TUESDAY" value="1" literal="TU"/>
@@ -86,6 +94,7 @@
     <eLiterals name="SUNDAY" value="1" literal="SU"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EntryDAYNumber">
+    <eOperations name="toString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="byDay" eType="#//DAY" defaultValueLiteral="MO"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="byDayNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -94,5 +103,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="lastMod" eType="#//Date"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="TZURL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Time Zone"/>
   </eClassifiers>
 </ecore:EPackage>

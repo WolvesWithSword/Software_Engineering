@@ -2,9 +2,90 @@
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" name="SEProj" version="12.0.0.2017041100">
   <ownedViewpoints name="Calendar">
     <ownedRepresentations xsi:type="description_1:EditionTableDescription" name="Calendar" titleExpression="Calendar" initialisation="true" domainClass="sEProj::VCalendar">
-      <ownedLineMappings name="VEvent" domainClass="VEvent" semanticCandidatesExpression="aql:self.component" headerLabelExpression="feature:summary"/>
-      <ownedColumnMappings name="Summary" headerLabelExpression="Titre" featureName="summary"/>
-      <ownedColumnMappings name="DTStart" headerLabelExpression="Debut" featureName="dtstart" labelExpression="aql:self.dtstart.year"/>
+      <ownedLineMappings name="Component" domainClass="sEProj::Component" semanticCandidatesExpression="aql:self.component" headerLabelExpression="feature:name">
+        <ownedSubLines name="RRule" domainClass="sEProj::RRule" semanticCandidatesExpression="aql:self.rrule" headerLabelExpression="feature:freq">
+          <defaultBackground>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
+          </defaultBackground>
+        </ownedSubLines>
+      </ownedLineMappings>
+      <ownedColumnMappings name="TZID" headerLabelExpression="TZID" featureName="TZID">
+        <defaultForeground labelSize="10">
+          <labelFormat>bold</labelFormat>
+          <foreGroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultForeground>
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="Summary" headerLabelExpression="Titre" featureName="summary">
+        <defaultForeground labelSize="9">
+          <labelFormat>bold</labelFormat>
+          <foreGroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+        </defaultForeground>
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="Status" headerLabelExpression="Status" featureName="status">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="Description" headerLabelExpression="Description" featureName="description">
+        <defaultForeground labelSize="7">
+          <labelFormat>italic</labelFormat>
+          <foreGroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+        </defaultForeground>
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="DTStart" headerLabelExpression="Debut" featureName="dtstart" labelExpression="aql:self.dtstart.toString()">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="RecException" headerLabelExpression="Date Exclues" featureName="exdate" labelExpression="aql:self.exdate.toString()">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="DTEnd" headerLabelExpression="Fin" featureName="dtend" labelExpression="aql:self.dtend.toString()">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="Location" headerLabelExpression="Lieu" featureName="location">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="Due" headerLabelExpression="Pour le" featureName="due" labelExpression="aql:self.due.toString()">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="Priority" headerLabelExpression="Priorité" featureName="priority">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="RecIntervalle" headerLabelExpression="Intervalle" featureName="interval">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="RecOccurence" headerLabelExpression="Occurence" featureName="count">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
+      <ownedColumnMappings name="RecDay" headerLabelExpression="Seulement le" featureName="entryDayNumber" labelExpression="aql:self.entryDayNumber.toString()">
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+        </defaultBackground>
+      </ownedColumnMappings>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="SEProj.design.Services"/>
   </ownedViewpoints>
