@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" name="SEProj" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" name="SEProj" version="12.0.0.2017041100">
   <ownedViewpoints name="Calendar">
     <ownedRepresentations xsi:type="description_1:EditionTableDescription" name="Calendar" titleExpression="Calendar" initialisation="true" domainClass="sEProj::VCalendar">
       <ownedLineMappings name="Component" domainClass="sEProj::Component" semanticCandidatesExpression="aql:self.component" headerLabelExpression="feature:name">
@@ -7,8 +7,87 @@
           <defaultBackground>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
           </defaultBackground>
+          <ownedSubLines name="JourRepet" label="Seulement le" domainClass="sEProj::EntryDAYNumber" semanticCandidatesExpression="aql:self.entryDayNumber" headerLabelExpression="Seulement le"/>
+          <create name="AddSeulementLe" label="Ajouter Seulement le" precondition="service:isInstanceOfRRule()">
+            <variables name="root" documentation="The semantic root element of the table."/>
+            <variables name="element" documentation="The semantic currently edited element."/>
+            <variables name="container" documentation="The semantic element corresponding to the view container."/>
+            <firstModelOperation xsi:type="tool:CreateInstance" typeName="sEProj::EntryDAYNumber" referenceName="entryDayNumber"/>
+          </create>
+          <delete name="deleteRRule" label="Supprimer Repetition" precondition="service:isInstanceOfRRule()">
+            <variables name="element" documentation="The semantic currently edited element."/>
+            <variables name="root" documentation="The semantic root element of the table."/>
+            <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="service:deleteRRule()"/>
+          </delete>
         </ownedSubLines>
+        <ownedSubLines name="dtstart" label="debut" domainClass="sEProj::Date" semanticCandidatesExpression="aql:self.dtstart" headerLabelExpression="Debut"/>
+        <ownedSubLines name="dtend" label="fin" domainClass="sEProj::Date" semanticCandidatesExpression="aql:self.dtend" headerLabelExpression="fin"/>
+        <ownedSubLines name="ExDate" label="Date exclue" domainClass="sEProj::Date" semanticCandidatesExpression="aql:self.exdate" headerLabelExpression="date exclue"/>
+        <create name="RRule" label="Ajouter Repetition" precondition="service:isTemporal()">
+          <variables name="root" documentation="The semantic root element of the table."/>
+          <variables name="element" documentation="The semantic currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+          <firstModelOperation xsi:type="tool:CreateInstance" typeName="RRule" referenceName="rrule"/>
+        </create>
+        <create name="AddDebut" label="Ajouter Debut" precondition="service:isTemporal()">
+          <variables name="root" documentation="The semantic root element of the table."/>
+          <variables name="element" documentation="The semantic currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+          <firstModelOperation xsi:type="tool:CreateInstance" typeName="sEProj::Date" referenceName="dtstart"/>
+        </create>
+        <create name="AddEnd" label="Ajouter fin" precondition="service:isInstanceVEvent()">
+          <variables name="root" documentation="The semantic root element of the table."/>
+          <variables name="element" documentation="The semantic currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+          <firstModelOperation xsi:type="tool:CreateInstance" typeName="sEProj::Date" referenceName="dtend"/>
+        </create>
+        <create name="AddDateExclu" label="Ajouter date exclue" precondition="service:isTemporal()">
+          <variables name="root" documentation="The semantic root element of the table."/>
+          <variables name="element" documentation="The semantic currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+          <firstModelOperation xsi:type="tool:CreateInstance" typeName="sEProj::Date" referenceName="exdate"/>
+        </create>
+        <delete name="delComponent" label="Supprimer Composant" precondition="service:isInstanceOfComponent()">
+          <variables name="element" documentation="The semantic currently edited element."/>
+          <variables name="root" documentation="The semantic root element of the table."/>
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="service:deleteComponent()"/>
+        </delete>
       </ownedLineMappings>
+      <ownedCreateLine name="AddEvent" label="Ajouter Event">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:CreateInstance" typeName="sEProj::VEvent" referenceName="component">
+          <subModelOperations xsi:type="tool:SetValue" featureName="summary" valueExpression="aql:'Evenement '+container.component->size()"/>
+          <subModelOperations xsi:type="tool:ChangeContext" browseExpression="service:initTemporalComponent()"/>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedCreateLine name="AddTODO" label="Ajouter TODO">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:CreateInstance" typeName="VTODO" referenceName="component">
+          <subModelOperations xsi:type="tool:SetValue" featureName="summary" valueExpression="aql:'TODO '+container.component->size()"/>
+          <subModelOperations xsi:type="tool:ChangeContext" browseExpression="service:initTemporalComponent()"/>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedCreateLine name="AddJournal" label="Ajouter Journal">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:CreateInstance" typeName="VJournal" referenceName="component">
+          <subModelOperations xsi:type="tool:SetValue" featureName="summary" valueExpression="aql:'Journal '+container.component->size()"/>
+          <subModelOperations xsi:type="tool:ChangeContext" browseExpression="service:initTemporalComponent()"/>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedCreateLine name="AddTimeZone" label="Ajouter TimeZone">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:CreateInstance" typeName="VTimeZone" referenceName="component">
+          <subModelOperations xsi:type="tool:SetValue" featureName="TZID" valueExpression="aql:'Europe/Paris'"/>
+        </firstModelOperation>
+      </ownedCreateLine>
       <ownedColumnMappings name="TZID" headerLabelExpression="TZID" featureName="TZID">
         <defaultForeground labelSize="10">
           <labelFormat>bold</labelFormat>
@@ -41,17 +120,17 @@
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
         </defaultBackground>
       </ownedColumnMappings>
-      <ownedColumnMappings name="DTStart" headerLabelExpression="Debut" featureName="dtstart" labelExpression="aql:self.dtstart.toString()">
+      <ownedColumnMappings name="DTStart" headerLabelExpression="Debut" canEdit="aql:false" featureName="dtstart" labelExpression="aql:self.dtstart.toString()">
         <defaultBackground>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
         </defaultBackground>
       </ownedColumnMappings>
-      <ownedColumnMappings name="RecException" headerLabelExpression="Date Exclues" featureName="exdate" labelExpression="aql:self.exdate.toString()">
+      <ownedColumnMappings name="RecException" headerLabelExpression="Date Exclues" canEdit="aql:false" featureName="exdate" labelExpression="aql:self.exdate.toString()">
         <defaultBackground>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
         </defaultBackground>
       </ownedColumnMappings>
-      <ownedColumnMappings name="DTEnd" headerLabelExpression="Fin" featureName="dtend" labelExpression="aql:self.dtend.toString()">
+      <ownedColumnMappings name="DTEnd" headerLabelExpression="Fin" canEdit="aql:false" featureName="dtend" labelExpression="aql:self.dtend.toString()">
         <defaultBackground>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
         </defaultBackground>
@@ -61,7 +140,7 @@
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
         </defaultBackground>
       </ownedColumnMappings>
-      <ownedColumnMappings name="Due" headerLabelExpression="Pour le" featureName="due" labelExpression="aql:self.due.toString()">
+      <ownedColumnMappings name="Due" headerLabelExpression="Pour le" canEdit="aql:false" featureName="due" labelExpression="aql:self.due.toString()">
         <defaultBackground>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
         </defaultBackground>
@@ -81,7 +160,7 @@
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
         </defaultBackground>
       </ownedColumnMappings>
-      <ownedColumnMappings name="RecDay" headerLabelExpression="Seulement le" featureName="entryDayNumber" labelExpression="aql:self.entryDayNumber.toString()">
+      <ownedColumnMappings name="RecDay" headerLabelExpression="Seulement le" canEdit="aql:false" featureName="entryDayNumber" labelExpression="aql:self.entryDayNumber.toString()">
         <defaultBackground>
           <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
         </defaultBackground>

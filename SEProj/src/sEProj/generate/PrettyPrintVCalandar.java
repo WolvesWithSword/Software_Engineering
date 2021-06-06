@@ -1,6 +1,7 @@
 package sEProj.generate;
 
 import java.io.PrintStream;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import sEProj.Component;
@@ -67,7 +68,10 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	
 	public void printTemporalComponent(TemporalComponent component) {
 		
-		//peut etre generer le UID avant
+		//generation si il n'a pas etait generer avant (normalement generer dans le constructeur
+		if(component.getUID()==null) {
+			component.setUID(UUID.randomUUID().toString());
+		}
 		printer.println("UID:"+component.getUID()); 
 		
 		if(component.getDtstamp()!= null) {
@@ -186,7 +190,7 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		StringBuilder sb = new StringBuilder();
 		
 		if(rRule.getFreq()!=null) {
-			sb.append("FREQ=").append(rRule.getFreq().getLiteral()).append(";");
+			sb.append("FREQ=").append(rRule.getFreq().getName()).append(";");
 		}
 		if(rRule.getCount()!=0) {
 			sb.append("COUNT=").append(rRule.getCount()).append(";");
@@ -235,6 +239,8 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		printer.println();
 		return true;
 	}
+	
+
 	
 	
 

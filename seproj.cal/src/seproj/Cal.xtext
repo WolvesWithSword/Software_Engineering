@@ -10,15 +10,15 @@ VCalendar returns VCalendar:
 	'{'
 		(
 			('SCALE' ':' calscale=EString)? &
-			('METHODE' ':' method=EString)? &
+			('METHODE' ':' method=EString)? 
 //			('prodid' prodid=EString)? & //inutile car defini par notre implementation
 //			('version' version=EString)? &
-			( component+=Component ( "," component+=Component)* )?
 		)
+		component+=Component*
 	'}';
 
 Component returns Component:
-	TemporalComponent|VTimeZone
+	(TemporalComponent|VTimeZone)
 ;
 
 TemporalComponent returns TemporalComponent:
@@ -42,8 +42,8 @@ VEvent returns VEvent:
 			('FIN' ':' dtend=Date)? &
 			('CREER' 'LE' ':' created=Date)? &
 			('MODIFIER' 'LE' ':' last_modified=Date)? &
-			('RECURRENCE' ':' rrule=RRule & ('SAUF' ('LE' | 'LES') exdate+=Date ( ',' exdate+=Date)* )?)? &
-			('STATUS' ':' status=StatusVEvent)? 
+			('RECURRENCE' ':' rrule=RRule ('SAUF' ('LE' | 'LES') exdate+=Date ( ',' exdate+=Date)* )?)? &
+			('STATUTS' ':' status=StatusVEvent)? 
 		)
 	'}'
 ;
@@ -61,7 +61,7 @@ VTODO returns VTODO:
 			('MODIFIER' 'LE' ':' last_modified=Date)? &
 			('RECURRENCE' ':' rrule=RRule & ('SAUF' ('LE' | 'LES') exdate+=Date ( ',' exdate+=Date)* )?)? &
 			('PRIORITE' ':' priority=EInt)? &
-			('STATUS' ':' status=StatusVTODO)? &
+			('STATUTS' ':' status=StatusVTODO)? &
 			('POUR' 'LE' ':' due=Date)?
 		)
 	'}'
@@ -88,7 +88,7 @@ VJournal returns VJournal:
 			('CREER' 'LE' ':' created=Date)? &
 			('MODIFIER' 'LE' ':' last_modified=Date)? &
 			('RECURRENCE' ':' rrule=RRule ('SAUF' ('LE' | 'LES') exdate+=Date ( 'ET' exdate+=Date)* )?)? &
-			('STATUS' ':' status=StatusVJournal)?
+			('STATUTS' ':' status=StatusVJournal)?
 		)
 	'}'
 ;
@@ -111,8 +111,7 @@ Date returns Date:
 
 RRule returns RRule:
 	('TOUTES'| 'TOUS') 'LES' (interval=EInt)? 
-	((freq=FreqEnum (count=EInt 'FOIS')?) 
-	| (freq=FreqEnumMonth  (count=EInt 'FOIS')? 'SEULEMENT' entryDayNumber+=EntryDayNumber ('ET' entryDayNumber+=EntryDayNumber)*))
+	(freq=FreqEnum (count=EInt 'FOIS')?) ('SEULEMENT' entryDayNumber+=EntryDayNumber ('ET' entryDayNumber+=EntryDayNumber)*)?
 ;
 	
 EntryDayNumber returns EntryDAYNumber:

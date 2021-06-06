@@ -1,30 +1,58 @@
 CALENDRIER{
 	METHODE : REQUEST
-	
-	TIMEZONE{
+	SCALE : GREGORIAN
+	TIMEZONE { 
 		TZID : "Europe/Paris"
-		TZURL : "http://url/Europe/Paris"
+	}
+	TODO:"FINIR LE PROJET" {
+		DESCRITPION : "Rendre le projet"
+		CREER LE : 06/06/2021 à 14 h 30
+		LIEU : "ent.unice.fr"
+		POUR LE: 07/06/2021
+		PRIORITE: 9
+		STATUTS: EN COURS 
 		
-	},
-	EVENEMENT:"FINIR LE PROJET" {
-		DESCRITPION : "UN SUPER PROJET"
-		DEBUT : 03/06/2021
-		STATUS : TENTATIVE
-		FIN : 04/06/2021
-		CREER LE : 03/06/2021 à 15 h 30
-		RECURRENCE : TOUS LES 3 MOIS SEULEMENT LE LUNDI ET LE 2 EME JEUDI
-	},
-	TODO : "Rendre le projet" {
-		PRIORITE : 4
-		STATUS : ACTION REQUISE
-		LIEU : Nice
-		POUR LE : 5/6/2021
-		RECURRENCE : TOUTES LES SEMAINES SAUF LE 26/05/2022, 27/05/2022
 	}
-	,
-	Journal : "Mon journal "{
-		STATUS : BROUILLON
-		DESCRITPION : "Il était une fois..."
-		DEBUT : 25/12/1999 à 15 h 30
-	}
-}
+	
+	
+	 EVENEMENT : Cours { 
+	 	UID : "89472b8b-785a-4f13-bd6b-e46d97f68161" 
+	 	DESCRITPION : "Un cours de master" 
+	 	STAMP : 06/06/2021 à 16 h 03 
+	 	DEBUT : 01/09/2020 à 14 h 
+	 	CREER LE : 6 / 6 / 2021 à 16 h 3 
+	 	RECURRENCE : TOUTES LES MOIS 6 FOIS SEULEMENT LE LUNDI ET LE 1 ER VENDREDI
+	 	LIEU : Sophia 
+	 	FIN :01/09/2020 à 16 h 30 
+	 	STATUTS : ANNULE 
+	 } 
+	 
+	EVENEMENT : "Cours 2" { 
+	 	UID : "a2c72b8b-785a-4f13-bd6b-e46d97f64761" 
+	 	DESCRITPION : "Un cours de master 2" 
+	 	STAMP : 06/06/2021 à 16 h 03 
+	 	DEBUT : 02/09/2020 à 14 h 
+	 	CREER LE : 6 / 6 / 2021 à 16 h 3 
+	 	RECURRENCE : TOUTES LES SEMAINES 6 FOIS
+	 	SAUF LES 24/05/2020, 25/05/2020
+	 	LIEU : Sophia 
+	 	FIN :02/09/2020 à 16 h 30 
+	 } 
+	 
+ 	Journal : "Un journal" { 
+ 		UID : "52ea49f7-625c-4c77-9517-3bf6a160fb1c" 
+ 		DESCRITPION : "le suivi du projet" 
+ 		STAMP : 6 / 6 / 2021 à 16 h 11 
+ 		DEBUT : 1 / 6 / 2021 
+ 		CREER LE : 6 / 6 / 2021 à 16 h 11 
+ 		RECURRENCE : TOUTES LES 2 SEMAINES 3 FOIS 
+ 		STATUTS : BROUILLON
+ 	} 
+ 	
+ 	 	Journal : "Un autre journal" { 
+ 		UID : "52959f7-625c-4c77-9517-3bf6a160fb1c" 
+ 		DESCRITPION : "le suivi du projet" 
+ 		STAMP : 6 / 6 / 2021 à 16 h 11 
+ 		MODIFIER LE: 6/6/2021 
+ 	} 
+ }
