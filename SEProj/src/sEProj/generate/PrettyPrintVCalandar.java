@@ -17,6 +17,10 @@ import sEProj.VTODO;
 import sEProj.VTimeZone;
 import sEProj.util.SEProjSwitch;
 
+/**
+ * Permet de print le fichier ics
+ *
+ */
 public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 	PrintStream printer;
 	
@@ -24,6 +28,9 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		this.printer = prinet;
 	}
 	
+	/**
+	 * Le calendrier
+	 */
 	@Override
 	public Boolean caseVCalendar(VCalendar cal) {
 		printer.println("BEGIN:VCALENDAR");
@@ -38,6 +45,9 @@ public class PrettyPrintVCalandar extends SEProjSwitch<Boolean>{
 		return true;
 	}
 	
+	/**
+	 * Les composant
+	 */
 	@Override
 	public Boolean caseComponent(Component component) {
 		if(component instanceof TemporalComponent) {

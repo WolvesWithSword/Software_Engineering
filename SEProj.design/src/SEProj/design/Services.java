@@ -26,17 +26,26 @@ public class Services {
       return self;
     }
     
+    /**
+     * Permet d'initialiser un composant temporel
+     * @param self le composant
+     * @return
+     */
     public EObject initTemporalComponent(EObject self) {
 //    	Calendar cal =(Calendar) self.eContainer();
     	TemporalComponent event = (TemporalComponent) self;
     	String uid = UUID.randomUUID().toString();
-    	event.setUID(uid);
-    	event.setCreated(generateCurrentDate());
-    	event.setDtstamp(generateCurrentDate());
+    	event.setUID(uid); //creation d'un id
+    	event.setCreated(generateCurrentDate()); //creation d'une date de creation
+    	event.setDtstamp(generateCurrentDate()); //ajout du dtStamp
 		return self;
     	
     }
     
+    /**
+     * Permet de recuperert la date courant
+     * @return
+     */
     private Date generateCurrentDate() {
     	Date date = SEProjFactory.eINSTANCE.createDate();
     	LocalDateTime now = LocalDateTime.now();  
