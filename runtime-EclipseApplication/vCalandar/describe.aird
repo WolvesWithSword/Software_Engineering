@@ -4,7 +4,7 @@
     <semanticResources>describe.cal</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_ME2hoMZBEeuurO6IOkG0YA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ME92YMZBEeuurO6IOkG0YA" name="Calendar" repPath="#_ME4W0MZBEeuurO6IOkG0YA" changeId="07970253-b4ad-4e99-b982-dae175c1e3f1">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ME92YMZBEeuurO6IOkG0YA" name="Calendar" repPath="#_ME4W0MZBEeuurO6IOkG0YA" changeId="494b910c-10e6-4d0a-a874-3d22b1a4dda6">
         <description xmi:type="description_1:EditionTableDescription" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']"/>
         <target xmi:type="sEProj:VCalendar" href="describe.cal#/"/>
       </ownedRepresentationDescriptors>
@@ -180,6 +180,16 @@
         <semanticElements xmi:type="sEProj:Date" href="describe.cal#//@component.3/@dtend"/>
         <originMapping xmi:type="description_1:LineMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedLineMappings[name='Component']/@ownedSubLines[name='dtend']"/>
       </lines>
+      <lines xmi:type="table:DLine" uid="_-MgH8MbTEeulyJ_tc1Gi_Q" label="date exclue">
+        <target xmi:type="sEProj:Date" href="describe.cal#//@component.3/@exdate.0"/>
+        <semanticElements xmi:type="sEProj:Date" href="describe.cal#//@component.3/@exdate.0"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedLineMappings[name='Component']/@ownedSubLines[name='ExDate']"/>
+      </lines>
+      <lines xmi:type="table:DLine" uid="_-MgH8sbTEeulyJ_tc1Gi_Q" label="date exclue">
+        <target xmi:type="sEProj:Date" href="describe.cal#//@component.3/@exdate.1"/>
+        <semanticElements xmi:type="sEProj:Date" href="describe.cal#//@component.3/@exdate.1"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedLineMappings[name='Component']/@ownedSubLines[name='ExDate']"/>
+      </lines>
       <semanticElements xmi:type="sEProj:VEvent" href="describe.cal#//@component.3"/>
       <originMapping xmi:type="description_1:LineMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedLineMappings[name='Component']"/>
       <cells xmi:type="table:DCell" uid="_94sitsbQEeuJn5VSu5NMyQ" label="Cours 2" column="_et5JoMafEeuuc-uf8pWQJQ">
@@ -198,7 +208,7 @@
         <target xmi:type="sEProj:VEvent" href="describe.cal#//@component.3"/>
         <semanticElements xmi:type="sEProj:VEvent" href="describe.cal#//@component.3"/>
       </cells>
-      <cells xmi:type="table:DCell" uid="_94sivsbQEeuJn5VSu5NMyQ" label="[]" column="_WMKqF8aoEeu5vs9I4LIAaw">
+      <cells xmi:type="table:DCell" uid="_94sivsbQEeuJn5VSu5NMyQ" label="[24/05/2020, 25/05/2020]" column="_WMKqF8aoEeu5vs9I4LIAaw">
         <target xmi:type="sEProj:VEvent" href="describe.cal#//@component.3"/>
         <semanticElements xmi:type="sEProj:VEvent" href="describe.cal#//@component.3"/>
       </cells>
@@ -259,33 +269,58 @@
         <semanticElements xmi:type="sEProj:VJournal" href="describe.cal#//@component.4"/>
       </cells>
     </lines>
+    <lines xmi:type="table:DLine" uid="_-MT6s8bTEeulyJ_tc1Gi_Q" label="Journal">
+      <target xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+      <semanticElements xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+      <originMapping xmi:type="description_1:LineMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedLineMappings[name='Component']"/>
+      <cells xmi:type="table:DCell" uid="_-Mx00MbTEeulyJ_tc1Gi_Q" label="Un autre journal" column="_et5JoMafEeuuc-uf8pWQJQ">
+        <target xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+        <semanticElements xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+      </cells>
+      <cells xmi:type="table:DCell" uid="_-Myb0cbTEeulyJ_tc1Gi_Q" label="UNDEFINED" column="_cMqiAsaqEeuCTLqUThqbaw">
+        <target xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+        <semanticElements xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+      </cells>
+      <cells xmi:type="table:DCell" uid="_-Myb08bTEeulyJ_tc1Gi_Q" label="le suivi du projet" column="_Y1K7YMaiEeuTvrPdszjBcw">
+        <target xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+        <semanticElements xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+      </cells>
+      <cells xmi:type="table:DCell" uid="_-MzC4cbTEeulyJ_tc1Gi_Q" label="" column="_et5wsMafEeuuc-uf8pWQJQ">
+        <target xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+        <semanticElements xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+      </cells>
+      <cells xmi:type="table:DCell" uid="_-Mzp8MbTEeulyJ_tc1Gi_Q" label="[]" column="_WMKqF8aoEeu5vs9I4LIAaw">
+        <target xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+        <semanticElements xmi:type="sEProj:VJournal" href="describe.cal#//@component.5"/>
+      </cells>
+    </lines>
     <columns xmi:type="table:DFeatureColumn" uid="_1Z3cMMaoEeu5vs9I4LIAaw" label="TZID" cells="__jDoAMbPEeuJn5VSu5NMyQ" width="119" featureName="TZID">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='TZID']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coGZcsatEeuotuKo4GCYvw" labelSize="10" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="239,41,41">
         <labelFormat>bold</labelFormat>
       </currentStyle>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_et5JoMafEeuuc-uf8pWQJQ" label="Titre" cells="_5NAswcafEeuuc-uf8pWQJQ _9yfpX8bPEeuJn5VSu5NMyQ _BDI6y8bQEeuJn5VSu5NMyQ _94sitsbQEeuJn5VSu5NMyQ _Enk1e8bREeuJn5VSu5NMyQ _Fssq2MbREeuJn5VSu5NMyQ" width="113" featureName="summary">
+    <columns xmi:type="table:DFeatureColumn" uid="_et5JoMafEeuuc-uf8pWQJQ" label="Titre" cells="_5NAswcafEeuuc-uf8pWQJQ _9yfpX8bPEeuJn5VSu5NMyQ _BDI6y8bQEeuJn5VSu5NMyQ _94sitsbQEeuJn5VSu5NMyQ _Fssq2MbREeuJn5VSu5NMyQ _-Mx00MbTEeulyJ_tc1Gi_Q" width="113" featureName="summary">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='Summary']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coGZc8atEeuotuKo4GCYvw" labelSize="9" defaultForegroundStyle="true" defaultBackgroundStyle="true" backgroundColor="217,196,215">
         <labelFormat>bold</labelFormat>
       </currentStyle>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_cMqiAsaqEeuCTLqUThqbaw" label="Status" cells="__jEPFMbPEeuJn5VSu5NMyQ _BDI6zcbQEeuJn5VSu5NMyQ _94siuMbQEeuJn5VSu5NMyQ _Enk1fcbREeuJn5VSu5NMyQ _Fssq2sbREeuJn5VSu5NMyQ" width="109" featureName="status">
+    <columns xmi:type="table:DFeatureColumn" uid="_cMqiAsaqEeuCTLqUThqbaw" label="Status" cells="__jEPFMbPEeuJn5VSu5NMyQ _BDI6zcbQEeuJn5VSu5NMyQ _94siuMbQEeuJn5VSu5NMyQ _Fssq2sbREeuJn5VSu5NMyQ _-Myb0cbTEeulyJ_tc1Gi_Q" width="109" featureName="status">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='Status']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAgMatEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="217,196,215"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_Y1K7YMaiEeuTvrPdszjBcw" label="Description" cells="__jEPFsbPEeuJn5VSu5NMyQ _BDJhwcbQEeuJn5VSu5NMyQ _94siusbQEeuJn5VSu5NMyQ _Enk1f8bREeuJn5VSu5NMyQ _Fssq3MbREeuJn5VSu5NMyQ" width="138" featureName="description">
+    <columns xmi:type="table:DFeatureColumn" uid="_Y1K7YMaiEeuTvrPdszjBcw" label="Description" cells="__jEPFsbPEeuJn5VSu5NMyQ _BDJhwcbQEeuJn5VSu5NMyQ _94siusbQEeuJn5VSu5NMyQ _Fssq3MbREeuJn5VSu5NMyQ _-Myb08bTEeulyJ_tc1Gi_Q" width="138" featureName="description">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='Description']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAhcatEeuotuKo4GCYvw" labelSize="7" defaultForegroundStyle="true" defaultBackgroundStyle="true" backgroundColor="217,196,215">
         <labelFormat>italic</labelFormat>
       </currentStyle>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_et5wsMafEeuuc-uf8pWQJQ" label="Debut" cells="_ezzgQsamEeu5vs9I4LIAaw __jEPGMbPEeuJn5VSu5NMyQ _BDJhw8bQEeuJn5VSu5NMyQ _94sivMbQEeuJn5VSu5NMyQ _Enk1gcbREeuJn5VSu5NMyQ _Fssq3sbREeuJn5VSu5NMyQ" width="123" featureName="dtstart">
+    <columns xmi:type="table:DFeatureColumn" uid="_et5wsMafEeuuc-uf8pWQJQ" label="Debut" cells="_ezzgQsamEeu5vs9I4LIAaw __jEPGMbPEeuJn5VSu5NMyQ _BDJhw8bQEeuJn5VSu5NMyQ _94sivMbQEeuJn5VSu5NMyQ _Fssq3sbREeuJn5VSu5NMyQ _-MzC4cbTEeulyJ_tc1Gi_Q" width="123" featureName="dtstart">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='DTStart']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAgcatEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="217,196,215"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_WMKqF8aoEeu5vs9I4LIAaw" label="Date Exclues" cells="_WMLRMMaoEeu5vs9I4LIAaw __jEPGsbPEeuJn5VSu5NMyQ _BDJhxcbQEeuJn5VSu5NMyQ _94sivsbQEeuJn5VSu5NMyQ _Enk1g8bREeuJn5VSu5NMyQ _Fssq4MbREeuJn5VSu5NMyQ" width="140" featureName="exdate">
+    <columns xmi:type="table:DFeatureColumn" uid="_WMKqF8aoEeu5vs9I4LIAaw" label="Date Exclues" cells="_WMLRMMaoEeu5vs9I4LIAaw __jEPGsbPEeuJn5VSu5NMyQ _BDJhxcbQEeuJn5VSu5NMyQ _94sivsbQEeuJn5VSu5NMyQ _Fssq4MbREeuJn5VSu5NMyQ _-Mzp8MbTEeulyJ_tc1Gi_Q" width="140" featureName="exdate">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='RecException']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAisatEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="217,196,215"/>
     </columns>
@@ -293,27 +328,27 @@
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='DTEnd']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAgsatEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="253,206,137"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_V0fCiMarEeu59tsrA92Vcw" label="Lieu" cells="__jE2IsbPEeuJn5VSu5NMyQ _BDJhycbQEeuJn5VSu5NMyQ _94siwsbQEeuJn5VSu5NMyQ _Enk1hsbREeuJn5VSu5NMyQ" width="54" featureName="location">
+    <columns xmi:type="table:DFeatureColumn" uid="_V0fCiMarEeu59tsrA92Vcw" label="Lieu" cells="__jE2IsbPEeuJn5VSu5NMyQ _BDJhycbQEeuJn5VSu5NMyQ _94siwsbQEeuJn5VSu5NMyQ" width="54" featureName="location">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='Location']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAhsatEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="253,206,137"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_-IHQo8amEeu5vs9I4LIAaw" label="Pour le" cells="_-IH3t8amEeu5vs9I4LIAaw __jE2JMbPEeuJn5VSu5NMyQ _Enk1iMbREeuJn5VSu5NMyQ" width="93" featureName="due">
+    <columns xmi:type="table:DFeatureColumn" uid="_-IHQo8amEeu5vs9I4LIAaw" label="Pour le" cells="_-IH3t8amEeu5vs9I4LIAaw __jE2JMbPEeuJn5VSu5NMyQ" width="93" featureName="due">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='Due']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAg8atEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="194,239,255"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_Ozz1FsarEeu59tsrA92Vcw" label="Priorité" cells="__jE2JsbPEeuJn5VSu5NMyQ _Enk1isbREeuJn5VSu5NMyQ" width="63" featureName="priority">
+    <columns xmi:type="table:DFeatureColumn" uid="_Ozz1FsarEeu59tsrA92Vcw" label="Priorité" cells="__jE2JsbPEeuJn5VSu5NMyQ" width="63" featureName="priority">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='Priority']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAhMatEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="194,239,255"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_VGhilMamEeu5vs9I4LIAaw" label="Intervalle" cells="_KmVvY8bQEeuJn5VSu5NMyQ _94si08bQEeuJn5VSu5NMyQ _SCHIhMbREeuJn5VSu5NMyQ _TpDRCcbREeuJn5VSu5NMyQ" width="127" featureName="interval">
+    <columns xmi:type="table:DFeatureColumn" uid="_VGhilMamEeu5vs9I4LIAaw" label="Intervalle" cells="_KmVvY8bQEeuJn5VSu5NMyQ _94si08bQEeuJn5VSu5NMyQ _TpDRCcbREeuJn5VSu5NMyQ" width="127" featureName="interval">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='RecIntervalle']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAh8atEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="136,136,136"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_VGiJoMamEeu5vs9I4LIAaw" label="Occurence" cells="_KmVvZcbQEeuJn5VSu5NMyQ _94si1cbQEeuJn5VSu5NMyQ _SCHIhsbREeuJn5VSu5NMyQ _TpDRC8bREeuJn5VSu5NMyQ" width="64" featureName="count">
+    <columns xmi:type="table:DFeatureColumn" uid="_VGiJoMamEeu5vs9I4LIAaw" label="Occurence" cells="_KmVvZcbQEeuJn5VSu5NMyQ _94si1cbQEeuJn5VSu5NMyQ _TpDRC8bREeuJn5VSu5NMyQ" width="64" featureName="count">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='RecOccurence']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_coHAiMatEeuotuKo4GCYvw" defaultBackgroundStyle="true" backgroundColor="136,136,136"/>
     </columns>
-    <columns xmi:type="table:DFeatureColumn" uid="_Z_aOAMavEeuUMOkdF9eqGw" label="Seulement le" cells="_KmVvZ8bQEeuJn5VSu5NMyQ _94si18bQEeuJn5VSu5NMyQ _SCHIiMbREeuJn5VSu5NMyQ _TpDRDcbREeuJn5VSu5NMyQ" width="206" featureName="entryDayNumber">
+    <columns xmi:type="table:DFeatureColumn" uid="_Z_aOAMavEeuUMOkdF9eqGw" label="Seulement le" cells="_KmVvZ8bQEeuJn5VSu5NMyQ _94si18bQEeuJn5VSu5NMyQ _TpDRDcbREeuJn5VSu5NMyQ" width="206" featureName="entryDayNumber">
       <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/plugin/SEProj.design/description/SEProj.odesign#//@ownedViewpoints[name='Calendar']/@ownedRepresentations[name='Calendar']/@ownedColumnMappings[name='RecDay']"/>
       <currentStyle xmi:type="table:DTableElementStyle" uid="_Z_aOAcavEeuUMOkdF9eqGw" defaultBackgroundStyle="true" backgroundColor="136,136,136"/>
     </columns>
